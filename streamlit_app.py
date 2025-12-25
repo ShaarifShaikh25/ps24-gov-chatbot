@@ -3,32 +3,18 @@ from openai import OpenAI
 from prompt import SYSTEM_PROMPT
 from utils import load_schemes, find_relevant_schemes
 
-# Initialize OpenAI client (ONLY THIS)
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
-
-# Page config
-st.set_page_config(page_title="PS-24 Government Assistant", layout="centered")
+st.set_page_config(page_title="IN Government Scheme Assistant (PS-24)")
 st.title("🇮🇳 Government Scheme Assistant (PS-24)")
 
-# Load schemes
+# Initialize OpenAI client (NO openai.api_key anywhere)
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
+# Load dataset
 schemes = load_schemes()
 
-# Language selector
-language = st.selectbox(
-    "Select Language / भाषा / भाषा निवडा",
-    ["English", "Hindi", "Marathi"]
-)
-
-# User input
 query = st.text_input("Ask about any government scheme:")
 
-# Optional eligibility
-st.subheader("Eligibility Details (Optional)")
-age = st.number_input("Age", min_value=0, max_value=100, value=25)
-income = st.number_input("Annual Income (₹)", min_value=0, value=300000)
-
 if st.button("Get Information"):
-
     matched = find_relevant_schemes(query, schemes)
 
     if matched:
@@ -37,8 +23,8 @@ if st.button("Get Information"):
             context += f"""
 Scheme Name: {s['name']}
 Benefits: {s['benefits']}
-Documents Required: {', '.join(s['documents'])}
-How to Apply: {s['apply']}
+Documents: {', '.join(s['documents'])}
+Apply: {s['apply']}
 """
 
         prompt = f"""
@@ -49,23 +35,21 @@ Dataset Information:
 
 Explain clearly.
 """
-
     else:
         prompt = f"""
 User Question: {query}
 
 The scheme is not present in the dataset.
-Use only official Indian government portals to explain.
-Clearly mention that information is sourced from government websites.
+Use only official Indian government portals.
+Mention source clearly.
 """
 
     response = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[
-        {"role": "system", "content": SYSTEM_PROMPT},
-        {"role": "user", "content": prompt}
-    ]
-)
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": prompt}
+        ]
+    )
 
-st.success(response.choices[0].message.content)
-
+    st.success(response.choices[0].message.content)
