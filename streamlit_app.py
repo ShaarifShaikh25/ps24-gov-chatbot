@@ -2,7 +2,10 @@ import streamlit as st
 from openai import OpenAI
 from prompt import SYSTEM_PROMPT
 from utils import load_schemes, find_relevant_schemes
+
+# Initialize OpenAI client (ONLY THIS)
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
 
 
 # Page config
