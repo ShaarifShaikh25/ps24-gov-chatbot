@@ -1,31 +1,25 @@
 [
   {
     "name": "Pradhan Mantri Awas Yojana",
-    "languages": ["en", "hi", "mr"],
+    "category": "Housing",
+    "keywords": ["house", "home", "awas", "ghar"],
     "eligibility": {
       "income": "< 600000",
       "age": ">= 18"
     },
-    "documents": [
-      "Aadhaar Card",
-      "Income Certificate",
-      "Bank Account Details"
-    ],
-    "benefits": "Subsidy on home loan and financial assistance for housing",
-    "apply": "Apply through official PMAY portal or CSC center"
+    "documents": ["Aadhaar Card", "Income Certificate"],
+    "benefits": "Housing subsidy",
+    "apply": "Apply via PMAY portal"
   },
   {
     "name": "PM Kisan Samman Nidhi",
-    "languages": ["en", "hi", "mr"],
+    "category": "Farmer",
+    "keywords": ["farmer", "kisan", "agriculture"],
     "eligibility": {
       "occupation": "Farmer"
     },
-    "documents": [
-      "Aadhaar Card",
-      "Land Records",
-      "Bank Passbook"
-    ],
-    "benefits": "₹6000 per year in three installments",
-    "apply": "Apply via pmkisan.gov.in or CSC"
+    "documents": ["Aadhaar Card", "Land Records"],
+    "benefits": "₹6000 per year",
+    "apply": "Apply via pmkisan.gov.in"
   }
 ]
