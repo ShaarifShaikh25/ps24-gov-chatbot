@@ -8,7 +8,7 @@ st.set_page_config(page_title="PS-24 Government Assistant", layout="centered")
 st.title("🇮🇳 Government Scheme Assistant (PS-24)")
 
 # OpenAI Key
-openai.api_key = st.secrets["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"]
+openai.api_key = "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"
 
 # Load schemes
 schemes = load_schemes()
