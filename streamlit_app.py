@@ -61,12 +61,13 @@ Use only official Indian government portals to explain.
 Clearly mention that information is sourced from government websites.
 """
 
-    response = openai.ChatCompletion.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": prompt}
-        ]
-    )
+    response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": prompt}
+    ]
+)
 
-    st.success(response.choices[0].message.content)
+st.success(response.choices[0].message.content)
+
