@@ -1,7 +1,9 @@
 import streamlit as st
-import openai
+from openai import OpenAI
 from prompt import SYSTEM_PROMPT
 from utils import load_schemes, find_relevant_schemes
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
 
 # Page config
 st.set_page_config(page_title="PS-24 Government Assistant", layout="centered")
